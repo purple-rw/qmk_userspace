@@ -25,3 +25,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 /* Select hand configuration */
 // #define MASTER_RIGHT
 // #define EE_HANDS
+
+/* LEDs on Pro Micro are used as status indicators */
+#define LED_NUM_LOCK_PIN  D5
+#define LED_CAPS_LOCK_PIN B0
+#define LED_PIN_ON_STATE  0
+
+/* Tapping toggle and timeout */
+#define TAPPING_TOGGLE 3
+#define ONESHOT_TAP_TOGGLE 3  /* Tapping this number of times holds the key until tapped once again. */
+#define ONESHOT_TIMEOUT 3000  /* Time (in ms) before the one shot key is released */
