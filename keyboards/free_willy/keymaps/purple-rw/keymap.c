@@ -29,6 +29,7 @@
 enum free_willy_layers {
     _COLEMAK,	// Colemak-DH
     _QWERTY,    // Qwerty
+    _COLENIT,   // Colemanite
     _HANDSDN,   // Hands Down Neu 30
     _SEMIMAK,   // Semimak JQ
     _RAISE,     // Numbers & Symbols
@@ -44,6 +45,7 @@ enum free_willy_layers {
 enum free_willy_keycodes {
     COLEMAK = QK_USER,
     QWERTY,
+    COLENIT,
     HANDSDN,
     SEMIMAK,
 
@@ -60,6 +62,7 @@ enum free_willy_keycodes {
 const uint16_t PROGMEM keycode2layer[] = {
     _COLEMAK,
     _QWERTY,
+    _COLENIT,
     _HANDSDN,
     _SEMIMAK,
 };
@@ -77,10 +80,15 @@ const uint16_t PROGMEM osd_keys[][3] = {
     /* M_ZMOUT */   { A(KC_WH_U), G(KC_MINS), G(A(KC_MINS)) }
 };
 
+/* Try Layers */
+#define TRI_LAYER_LOWER_LAYER  _RAISE
+#define TRI_LAYER_RAISE_LAYER  _LOWER
+#define TRI_LAYER_ADJUST_LAYER _MODS
+
 /* Thumb keys */
-#define RAISE   TL_LOWR
+#define RAISE   QK_TRI_LAYER_LOWER
 #define SYMBL   TT(_SYMBL)
-#define LOWER   TL_UPPR
+#define LOWER   QK_TRI_LAYER_UPPER
 #define KEYPD   TT(_KEYPD)
 
 /* Layer keys */
@@ -149,6 +157,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
     KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,
     KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,
+                      _______, _______, _______, _______, _______, _______
+),
+
+/* Colemanite
+ * ,---------------------------------------------------------------------.
+ * |  B   |  L   |  W   |  M   |  Q   |  J   |  F   |  O   |  U   |  ;   |
+ * |------+------+------+------+------+------+------+------+------+------|
+ * |  N   |  R   |  S   |  T   |  G   |  Y   |  H   |  E   |  I   |  A   |
+ * |------+------+------+------+------+------+------+------+------+------|
+ * |  Z   |  X   |  C   |  D   |  V   |  K   |  P   |  /   |  .   |  ,   |
+ * `-------------+------+------+------+------+------+------+-------------'
+ *               | Esc  |LOWER |Shift |Space |RAISE |Enter |
+ *               `-----------------------------------------'
+ */
+[_COLENIT] = LAYOUT(
+    KC_B,    KC_L,    KC_W,    KC_M,    KC_Q,    KC_J,    KC_F,    KC_O,    KC_U,    KC_SCLN,
+    KC_N,    KC_R,    KC_S,    KC_T,    KC_G,    KC_Y,    KC_H,    KC_E,    KC_I,    KC_A,
+    KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_P,    KC_SLSH, KC_DOT,  KC_COMM,
                       _______, _______, _______, _______, _______, _______
 ),
 
@@ -230,7 +256,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+------+------+------+------|
  * |  F5  |  F6  |  F7  |  F8  |PrScn | Home | Left | Down |Right | End  |
  * |------+------+------+------+------+------+------+------+------+------|
- * |  F9  | F10  | F11  | F12  |ScrLk | Tab  |BkSpc |Enter | Del  |      |
+ * |  F9  | F10  | F11  | F12  |ScrLk | Tab  |BkSpc |Enter | Del  | Esc  |
  * `-------------+------+------+------+------+------+------+-------------'
  *               |      | **** |      |KEYPD |(MODS)|      |
  *               `-----------------------------------------'
@@ -238,7 +264,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  [_LOWER] = LAYOUT(
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_PAUS, KC_INS,  KC_PGUP, KC_UP,   KC_PGDN, KC_APP,
     KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_PSCR, KC_HOME, KC_LEFT, KC_DOWN, KC_RGHT, KC_END,
-    KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_SCRL, KC_TAB,  KC_BSPC, KC_ENT,  KC_DEL,  _______,
+    KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_SCRL, KC_TAB,  KC_BSPC, KC_ENT,  KC_DEL,  KC_ESC,
                       _______, _______, XXXXXXX, KEYPD,   _______, _______
 ),
 
@@ -316,9 +342,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Adjust
  * ,---------------------------------------------------------------------.
- * |Brght+| Sat+ | Hue+ |RGBmod| BL+  |      |      |      |      |Debug |
+ * |Brght+| Sat+ | Hue+ |RGBmod| BL+  |      |HndsDn|Semimk|      |Debug |
  * |------+------+------+------+------+------+------+------+------+------|
- * |Brght-| Sat- | Hue- | RGB  | BL-  |AGnorm|Colemk|Qwerty|HndsDn|Semimk|
+ * |Brght-| Sat- | Hue- | RGB  | BL-  |AGnorm|Colemk|Qwerty|Colnit|      |
  * |------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |  BL  |BLbrth|AGswap|      |      |Reset |BootL |
  * `-------------+------+------+------+------+------+------+-------------'
@@ -326,8 +352,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *               `-----------------------------------------'
  */
 [_ADJST] = LAYOUT(
-    RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD, BL_UP,   XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DB_TOGG,
-    RGB_VAD, RGB_SAD, RGB_HUD, RGB_TOG, BL_DOWN, AG_NORM, COLEMAK, QWERTY,  HANDSDN, SEMIMAK,
+    RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD, BL_UP,   XXXXXXX, HANDSDN, SEMIMAK, XXXXXXX, DB_TOGG,
+    RGB_VAD, RGB_SAD, RGB_HUD, RGB_TOG, BL_DOWN, AG_NORM, COLEMAK, QWERTY,  COLENIT, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, BL_TOGG, BL_BRTG, AG_SWAP, XXXXXXX, XXXXXXX, QK_RBT,  QK_BOOT,
                       XXXXXXX, XXXXXXX, ADJST,   ADJST,   XXXXXXX, XXXXXXX
 )
@@ -357,6 +383,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case COLEMAK:   /* fall thru */
         case QWERTY:    /* fall thru */
+        case COLENIT:   /* fall thru */
         case HANDSDN:   /* fall thru */
         case SEMIMAK:
             if (record->event.pressed) {
