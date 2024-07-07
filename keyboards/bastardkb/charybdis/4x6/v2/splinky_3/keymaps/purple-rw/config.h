@@ -18,7 +18,7 @@
 
 #ifdef VIA_ENABLE
 /* VIA configuration. */
-#    define DYNAMIC_KEYMAP_LAYER_COUNT 4
+    #define DYNAMIC_KEYMAP_LAYER_COUNT 16
 #endif // VIA_ENABLE
 
 /* Disable unused features. */
@@ -32,3 +32,6 @@
 // - `CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_THRESHOLD`
 // #define CHARYBDIS_AUTO_POINTER_LAYER_TRIGGER_ENABLE
 #endif // POINTING_DEVICE_ENABLE
+
+#define ONESHOT_TAP_TOGGLE 3  /* Tapping this number of times holds the key until tapped once again. */
+#define ONESHOT_TIMEOUT 3000  /* Time (in ms) before the one shot key is released */
