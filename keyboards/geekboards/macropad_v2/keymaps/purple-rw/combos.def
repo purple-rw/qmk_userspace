@@ -1,0 +1,88 @@
+// Combos in base layer
+// NAME          RESULT                     TRIGGER
+COMB(combo_p,    KC_P,                                        KEY_T2,  KEY_T1)
+COMB(combo_d,    KC_D,                                        KEY_B2,  KEY_B1)
+COMB(combo_u,    KC_U,                               KEY_T3,  KEY_T2)
+COMB(combo_y,    KC_Y,                               KEY_B3,  KEY_B2)
+COMB(combo_l,    KC_L,                      KEY_T4,  KEY_T3)
+COMB(combo_h,    LT(LAYER_ARROWS, KC_H),    KEY_B4,  KEY_B3)
+COMB(combo_m,    KC_M,                               KEY_T3,           KEY_T1)
+SUBS(combo_th,   "th",                               KEY_B3,           KEY_B1)
+COMB(combo_f,    KC_F,                      KEY_T4,                    KEY_T1)
+COMB(combo_c,    KC_C,                      KEY_B4,                    KEY_B1)
+COMB(combo_k,    KC_K,                      KEY_T4,  KEY_T3,           KEY_T1)
+COMB(combo_g,    KC_G,                      KEY_B4,  KEY_B3,           KEY_B1)
+COMB(combo_b,    KC_B,                               KEY_T3,  KEY_T2,  KEY_T1)
+COMB(combo_w,    KC_W,                               KEY_B3,  KEY_B2,  KEY_B1)
+COMB(combo_j,    KC_J,                      KEY_T4,  KEY_T3,  KEY_T2)
+COMB(combo_v,    KC_V,                      KEY_B4,  KEY_B3,  KEY_B2)
+COMB(combo_q,    KC_Q,                      KEY_T4,           KEY_T2)
+COMB(combo_x,    KC_X,                      KEY_T4,           KEY_T2,  KEY_T1)
+COMB(combo_z,    KC_Z,                      KEY_B4,           KEY_B2,  KEY_B1)
+
+COMB(combo_comm, LT(LAYER_NAV, KC_COMM),    KEY_B4,  KEY_T3)
+COMB(combo_dot,  KC_DOT,                    KEY_B4,                    KEY_T1)
+COMB(combo_scln, KC_SCLN,                   KEY_B4,  KEY_T3,  KEY_T2)
+COMB(combo_coln, KC_COLN,                   KEY_B4,           KEY_T2,  KEY_T1)
+COMB(combo_quot, KC_QUOT,                   KEY_B4,           KEY_T2)
+COMB(combo_dqt,  KC_DQT,                    KEY_B4,  KEY_T3,           KEY_T1)
+COMB(combo_slsh, KC_SLSH,                            KEY_B3,           KEY_T1)
+COMB(combo_ques, KC_QUES,                            KEY_T3,           KEY_B1)
+
+COMB(combo_spc,  KC_SPC,                                      KEY_T2,  KEY_B1)
+COMB(combo_tab,  KC_TAB,                                      KEY_B2,  KEY_T1)
+COMB(combo_del,  KC_DEL,                             KEY_T3,  KEY_B2)
+COMB(combo_bspc, KC_BSPC,                            KEY_B3,  KEY_T2)
+COMB(combo_esc,  KC_ESC,                    KEY_T4,  KEY_T3,  KEY_T2,  KEY_T1)
+COMB(combo_ent,  KC_ENT,                    KEY_B4,  KEY_B3,  KEY_B2,  KEY_B1)
+COMB(combo_osft, OSM_SFT,                                              KEY_B1,  KEY_T1)
+COMB(combo_ogui, OSM_GUI,                                     KEY_B2,  KEY_T2)
+COMB(combo_oalt, OSM_ALT,                            KEY_B3,  KEY_T3)
+COMB(combo_octl, OSM_CTL,                   KEY_B4,  KEY_T4)
+
+COMB(combo_sftl, LCK_SFT,                   KEY_T4,  KEY_T3,  KEY_T2,  KEY_B1)
+COMB(combo_caps, KC_CAPS,                   KEY_B4,  KEY_B3,  KEY_B2,  KEY_T1)
+COMB(combo_cw,   CW_TOGG,                   KEY_B4,  KEY_B3,           KEY_T1)
+COMB(combo_hndl, LCK_HND,                   KEY_T4,  KEY_B3,  KEY_B2,  KEY_B1)
+COMB(combo_hnd,  OSM_HND,                   KEY_T4,           KEY_B2,  KEY_B1)
+
+COMB(layer_fn,   OSL(LAYER_FUNCS),          KEY_B2,  KEY_B1,  KEY_T2,  KEY_T1)
+COMB(layer_rgb,  TG(LAYER_RGB),             KEY_B4,  KEY_T3,  KEY_B2,  KEY_T1)
+COMB(layer_rgb2, TG(LAYER_RGB),             KRGB_B4, KRGB_T3, KRGB_B2, KRGB_T1)
+COMB(layer_ms,   TG(LAYER_MOUSE),                    KEY_B3,  KEY_T2,  KEY_B1)
+COMB(layer_ms2,  TG(LAYER_MOUSE),                    KMSE_B3, KMSE_T2, KMSE_B1)
+
+
+// Combos in other layers
+// NAME          RESULT                     TRIGGER
+COMB(combo_0,    KC_0,                               KNUM_B3, KNUM_B2)
+COMB(combo_7,    KC_7,                               KNUM_T3, KNUM_T2)
+COMB(combo_dot2, KC_DOT,                                      KNUM_B2, KNUM_B1)
+COMB(combo_8,    KC_8,                                        KNUM_T2, KNUM_T1)
+COMB(combo_9,    KC_9,                               KNUM_T3, KNUM_T2, KNUM_T1)
+
+COMB(combo_at,   KC_AT,                     KSYM_T4, KSYM_T3)
+COMB(combo_pipe, KC_PIPE,                   KSYM_B4, KSYM_B3)
+COMB(combo_bsls, KC_BSLS,                            KSYM_T3, KSYM_T2)
+COMB(combo_ampr, KC_AMPR,                            KSYM_B3, KSYM_B2)
+COMB(combo_perc, KC_PERC,                   KSYM_T4, KSYM_T3, KSYM_T2)
+COMB(combo_plus, KC_PLUS,                   KSYM_B4, KSYM_B3, KSYM_B2)
+
+COMB(combo_labk, KC_LABK,                   KPRN_T4, KPRN_T3)
+COMB(combo_tild, KC_TILD,                   KPRN_B4, KPRN_B3)
+COMB(combo_rabk, KC_RABK,                            KPRN_T3, KPRN_T2)
+COMB(combo_circ, KC_CIRC,                            KPRN_B3, KPRN_B2)
+COMB(combo_grv,  KC_GRV,                    KPRN_T4, KPRN_T3, KPRN_T2)
+
+COMB(combo_ins,  KC_INS,                                      KNAV_T2, KNAV_T1)
+
+COMB(combo_mprv, KC_MPRV,                            KMDA_T3, KMDA_T2)
+COMB(combo_mnxt, KC_MNXT,                                     KMDA_T2, KMDA_T1)
+COMB(combo_mply, KC_MPLY,                            KMDA_T3, KMDA_T2, KMDA_T1)
+
+COMB(combo_f12,  KC_F12,                                               KFUN_B1, KFUN_T1)
+COMB(combo_f11,  KC_F11,                                      KFUN_B2, KFUN_T2)
+COMB(combo_f10,  KC_F10,                             KFUN_B3, KFUN_T3)
+COMB(combo_f9,   KC_F9,                     KFUN_B4, KFUN_T4)
+
+COMB(combo_rgbt, RGB_TOG,                                              KRGB_B1, KRGB_T1)
