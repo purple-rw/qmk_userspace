@@ -28,6 +28,16 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KNUM_B4, KNUM_B3, KNUM_B2, KNUM_B1
     ),
 
+    [LAYER_KEYPAD] = LAYOUT_ortho_2x4(
+        KPAD_T4, KPAD_T3, KPAD_T2, KPAD_T1,
+        KPAD_B4, KPAD_B3, KPAD_B2, KPAD_B1
+    ),
+
+    [LAYER_KP_SYMBOLS] = LAYOUT_ortho_2x4(
+        KPDS_T4, KPDS_T3, KPDS_T2, KPDS_T1,
+        KPDS_B4, KPDS_B3, KPDS_B2, KPDS_B1
+    ),
+
     [LAYER_SYMBOLS] = LAYOUT_ortho_2x4(
         KSYM_T4, KSYM_T3, KSYM_T2, KSYM_T1,
         KSYM_B4, KSYM_B3, KSYM_B2, KSYM_B1
@@ -53,15 +63,6 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KNAV_B4, KNAV_B3, KNAV_B2, KNAV_B1
     ),
 
-    [LAYER_MOUSE] = LAYOUT_ortho_2x4(
-        KMSE_T4, KMSE_T3, KMSE_T2, KMSE_T1,
-        KMSE_B4, KMSE_B3, KMSE_B2, KMSE_B1
-    ),
-    [LAYER_MOUSE_SCROLL] = LAYOUT_ortho_2x4(
-        KMSS_T4, KMSS_T3, KMSS_T2, KMSS_T1,
-        KMSS_B4, KMSS_B3, KMSS_B2, KMSS_B1
-    ),
-
     [LAYER_FUNCS] = LAYOUT_ortho_2x4(
         KFUN_T4, KFUN_T3, KFUN_T2, KFUN_T1,
         KFUN_B4, KFUN_B3, KFUN_B2, KFUN_B1
@@ -70,6 +71,16 @@ const uint16_t keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [LAYER_RGB] = LAYOUT_ortho_2x4(
         KRGB_T4, KRGB_T3, KRGB_T2, KRGB_T1,
         KRGB_B4, KRGB_B3, KRGB_B2, KRGB_B1
+    ),
+
+    [LAYER_MOUSE] = LAYOUT_ortho_2x4(
+        KMSE_T4, KMSE_T3, KMSE_T2, KMSE_T1,
+        KMSE_B4, KMSE_B3, KMSE_B2, KMSE_B1
+    ),
+
+    [LAYER_MOUSE_SCROLL] = LAYOUT_ortho_2x4(
+        KMSS_T4, KMSS_T3, KMSS_T2, KMSS_T1,
+        KMSS_B4, KMSS_B3, KMSS_B2, KMSS_B1
     )
 };
 
@@ -90,6 +101,45 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 mod_hand_os = 0;                // cancel osm
             }
             break;
+        case LCK_CTL:
+            if (record->event.pressed) {
+                if (get_mods() & MOD_BIT(mod_hand ? KC_RCTL : KC_LCTL)) {
+                    unregister_mods(MOD_BIT(mod_hand ? KC_RCTL : KC_LCTL));
+                }
+                else {
+                    register_mods(MOD_BIT(mod_hand ? KC_RCTL : KC_LCTL));
+                }
+            } else {
+                mod_hand ^= mod_hand_os;        // switch hand if osm pressed
+                mod_hand_os = 0;                // cancel osm
+            }
+            break;
+        case LCK_GUI:
+            if (record->event.pressed) {
+                if (get_mods() & MOD_BIT(mod_hand ? KC_RGUI : KC_LGUI)) {
+                    unregister_mods(MOD_BIT(mod_hand ? KC_RGUI : KC_LGUI));
+                }
+                else {
+                    register_mods(MOD_BIT(mod_hand ? KC_RGUI : KC_LGUI));
+                }
+            } else {
+                mod_hand ^= mod_hand_os;        // switch hand if osm pressed
+                mod_hand_os = 0;                // cancel osm
+            }
+            break;
+        case LCK_ALT:
+            if (record->event.pressed) {
+                if (get_mods() & MOD_BIT(mod_hand ? KC_RALT : KC_LALT)) {
+                    unregister_mods(MOD_BIT(mod_hand ? KC_RALT : KC_LALT));
+                }
+                else {
+                    register_mods(MOD_BIT(mod_hand ? KC_RALT : KC_LALT));
+                }
+            } else {
+                mod_hand ^= mod_hand_os;        // switch hand if osm pressed
+                mod_hand_os = 0;                // cancel osm
+            }
+            break;
         case LCK_SFT:
             if (record->event.pressed) {
                 if (get_mods() & MOD_BIT(mod_hand ? KC_RSFT : KC_LSFT)) {
@@ -99,7 +149,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     register_mods(MOD_BIT(mod_hand ? KC_RSFT : KC_LSFT));
                 }
             } else {
-                mod_hand ^= mod_hand_os;        // switch hand is osm pressed
+                mod_hand ^= mod_hand_os;        // switch hand if osm pressed
                 mod_hand_os = 0;                // cancel osm
             }
             break;

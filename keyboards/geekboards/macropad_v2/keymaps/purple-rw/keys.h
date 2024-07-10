@@ -14,15 +14,17 @@
 enum Layers {
     LAYER_ALPHAS,
     LAYER_NUMBERS,
+    LAYER_KEYPAD,
+    LAYER_KP_SYMBOLS,
     LAYER_SYMBOLS,
     LAYER_PARENS,
     LAYER_MEDIA,
     LAYER_ARROWS,
     LAYER_NAV,
-    LAYER_MOUSE,
-    LAYER_MOUSE_SCROLL,
     LAYER_FUNCS,
     LAYER_RGB,
+    LAYER_MOUSE,
+    LAYER_MOUSE_SCROLL
 };
 
 enum custom_keycodes {
@@ -30,9 +32,12 @@ enum custom_keycodes {
     OSM_GUI,
     OSM_ALT,
     OSM_CTL,
+    OSM_HND,    // one-shot to switching hand for modifiers
     LCK_SFT,
-    LCK_HND,    // switch hand for modifiers
-    OSM_HND,    // one-shot switch hand for modifiers
+    LCK_GUI,
+    LCK_ALT,
+    LCK_CTL,
+    LCK_HND,    // lock switching hand for modifiers
 };
 
 // Base layer
@@ -54,6 +59,26 @@ enum custom_keycodes {
 #define KNUM_B2 KC_2
 #define KNUM_B3 KC_1
 #define KNUM_B4 _______
+
+// Keypad layer (Left Hand)
+#define KPAD_T1 LT(LAYER_PARENS,     KC_P6)
+#define KPAD_T2 KC_P5
+#define KPAD_T3 KC_P4
+#define KPAD_T4 LT(LAYER_MEDIA,      KC_P0)
+#define KPAD_B1 LT(LAYER_SYMBOLS,    KC_P3)
+#define KPAD_B2 KC_P2
+#define KPAD_B3 KC_P1
+#define KPAD_B4 LT(LAYER_KP_SYMBOLS, KC_PDOT)
+
+// Keypad Symbols layer
+#define KPDS_T1 KC_PAST
+#define KPDS_T2 KC_PSLS
+#define KPDS_T3 KC_PEQL
+#define KPDS_T4 KC_NUM
+#define KPDS_B1 KC_PPLS
+#define KPDS_B2 KC_PMNS
+#define KPDS_B3 XXXXXXX
+#define KPDS_B4 _______
 
 // Symbols layer
 #define KSYM_T1 KC_EXLM

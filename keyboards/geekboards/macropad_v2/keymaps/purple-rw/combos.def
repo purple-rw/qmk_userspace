@@ -16,9 +16,9 @@ COMB(combo_b,    KC_B,                               KEY_T3,  KEY_T2,  KEY_T1)
 COMB(combo_w,    KC_W,                               KEY_B3,  KEY_B2,  KEY_B1)
 COMB(combo_j,    KC_J,                      KEY_T4,  KEY_T3,  KEY_T2)
 COMB(combo_v,    KC_V,                      KEY_B4,  KEY_B3,  KEY_B2)
-COMB(combo_q,    KC_Q,                      KEY_T4,           KEY_T2)
-COMB(combo_x,    KC_X,                      KEY_T4,           KEY_T2,  KEY_T1)
+COMB(combo_q,    KC_Q,                      KEY_T4,           KEY_T2,  KEY_T1)
 COMB(combo_z,    KC_Z,                      KEY_B4,           KEY_B2,  KEY_B1)
+COMB(combo_x,    KC_X,                      KEY_T4,           KEY_T2)
 
 COMB(combo_comm, LT(LAYER_NAV, KC_COMM),    KEY_B4,  KEY_T3)
 COMB(combo_dot,  KC_DOT,                    KEY_B4,                    KEY_T1)
@@ -35,22 +35,100 @@ COMB(combo_del,  KC_DEL,                             KEY_T3,  KEY_B2)
 COMB(combo_bspc, KC_BSPC,                            KEY_B3,  KEY_T2)
 COMB(combo_esc,  KC_ESC,                    KEY_T4,  KEY_T3,  KEY_T2,  KEY_T1)
 COMB(combo_ent,  KC_ENT,                    KEY_B4,  KEY_B3,  KEY_B2,  KEY_B1)
+
 COMB(combo_osft, OSM_SFT,                                              KEY_B1,  KEY_T1)
 COMB(combo_ogui, OSM_GUI,                                     KEY_B2,  KEY_T2)
 COMB(combo_oalt, OSM_ALT,                            KEY_B3,  KEY_T3)
 COMB(combo_octl, OSM_CTL,                   KEY_B4,  KEY_T4)
 
-COMB(combo_sftl, LCK_SFT,                   KEY_T4,  KEY_T3,  KEY_T2,  KEY_B1)
-COMB(combo_caps, KC_CAPS,                   KEY_B4,  KEY_B3,  KEY_B2,  KEY_T1)
-COMB(combo_cw,   CW_TOGG,                   KEY_B4,  KEY_B3,           KEY_T1)
-COMB(combo_hndl, LCK_HND,                   KEY_T4,  KEY_B3,  KEY_B2,  KEY_B1)
-COMB(combo_hnd,  OSM_HND,                   KEY_T4,           KEY_B2,  KEY_B1)
+COMB(combo_sftl, LCK_SFT,                   KEY_B4,                    KEY_B1,  KEY_T1)
+COMB(combo_guil, LCK_GUI,                   KEY_B4,           KEY_B2,  KEY_T2)
+COMB(combo_altl, LCK_ALT,                   KEY_B4,  KEY_B3,  KEY_T3)                       // experimental
+COMB(combo_guik, LCK_GUI,                                     KEY_B2,  KEY_T2,  KEY_B1)     // experimental
+COMB(combo_altk, LCK_ALT,                            KEY_B3,  KEY_T3,           KEY_B1)
+COMB(combo_ctlk, LCK_CTL,                   KEY_B4,  KEY_T4,                    KEY_B1)
 
-COMB(layer_fn,   OSL(LAYER_FUNCS),          KEY_B2,  KEY_B1,  KEY_T2,  KEY_T1)
-COMB(layer_rgb,  TG(LAYER_RGB),             KEY_B4,  KEY_T3,  KEY_B2,  KEY_T1)
-COMB(layer_rgb2, TG(LAYER_RGB),             KRGB_B4, KRGB_T3, KRGB_B2, KRGB_T1)
-COMB(layer_ms,   TG(LAYER_MOUSE),                    KEY_B3,  KEY_T2,  KEY_B1)
-COMB(layer_ms2,  TG(LAYER_MOUSE),                    KMSE_B3, KMSE_T2, KMSE_B1)
+COMB(combo_caps, KC_CAPS,                   KEY_T4,  KEY_T3,  KEY_T2,  KEY_B1)
+COMB(combo_cw,   CW_TOGG,                   KEY_T4,  KEY_T3,           KEY_B1)
+COMB(combo_hndl, LCK_HND,                   KEY_B4,  KEY_B3,  KEY_B2,  KEY_T1)
+COMB(combo_hnd,  OSM_HND,                   KEY_B4,  KEY_B3,           KEY_T1)
+
+COMB(layer_fn,   OSL(LAYER_FUNCS),                   KEY_B2,  KEY_B1,  KEY_T2,  KEY_T1)     // one-shot Function layer
+COMB(layer_fnl,  OSL(LAYER_FUNCS),          KEY_B4,  KEY_B2,  KEY_B1,  KEY_T2,  KEY_T1)     // get into Function layer
+COMB(layer_fnl2, OSL(LAYER_FUNCS),          KFUN_B4, KFUN_B2, KFUN_B1, KFUN_T2, KFUN_T1)    // get out of Function layer
+COMB(layer_pad,  TG(LAYER_KEYPAD),                   KEY_T3,  KEY_B2,  KEY_T1)              // get into Keypad layer
+COMB(layer_pad2, TG(LAYER_KEYPAD),                   KPAD_T3, KPAD_B2, KPAD_T1)             // get out of Keypad layer
+COMB(layer_rgb,  TG(LAYER_RGB),             KEY_B4,  KEY_T3,  KEY_B2,  KEY_T1)              // get into RGB layer
+COMB(layer_rgb2, TG(LAYER_RGB),             KRGB_B4, KRGB_T3, KRGB_B2, KRGB_T1)             // get out of RGB layer
+COMB(layer_ms,   TG(LAYER_MOUSE),                    KEY_B3,  KEY_T2,  KEY_B1)              // get into Mouse layer
+COMB(layer_ms2,  TG(LAYER_MOUSE),                    KMSE_B3, KMSE_T2, KMSE_B1)             // get out of Mouse layer
+
+
+// Combos in keypad layer
+// NAME          RESULT                     TRIGGER
+COMB(combo_p0,   KC_P0,                              KPAD_B3, KPAD_B2)
+COMB(combo_p7,   KC_P7,                              KPAD_T3, KPAD_T2)
+COMB(combo_pdot, KC_PDOT,                                     KPAD_B2, KPAD_B1)
+COMB(combo_p8,   KC_P8,                                       KPAD_T2, KPAD_T1)
+COMB(combo_p9,   KC_P9,                              KPAD_T3, KPAD_T2, KPAD_T1)
+
+COMB(combo_h2,   MO(LAYER_ARROWS),          KPAD_B4, KPAD_B3)
+COMB(combo_com2, LT(LAYER_NAV, KC_COMM),    KPAD_B4, KPAD_T3)                               // KC_PCMM is not recognized by Mac or Win
+COMB(combo_pdo2, KC_PDOT,                   KPAD_B4,                   KPAD_T1)             // keypad dot
+COMB(combo_scl2, KC_SCLN,                   KPAD_B4, KPAD_T3, KPAD_T2)
+COMB(combo_col2, KC_COLN,                   KPAD_B4,          KPAD_T2, KPAD_T1)
+COMB(combo_quo2, KC_QUOT,                   KPAD_B4,          KPAD_T2)
+COMB(combo_dqt2, KC_DQT,                    KPAD_B4, KPAD_T3,          KPAD_T1)
+COMB(combo_sls2, KC_SLSH,                            KPAD_B3,          KPAD_T1)
+COMB(combo_que2, KC_QUES,                            KPAD_T3,          KPAD_B1)
+
+COMB(combo_spc2, KC_SPC,                                      KPAD_T2, KPAD_B1)
+COMB(combo_tab2, KC_TAB,                                      KPAD_B2, KPAD_T1)
+COMB(combo_del2, KC_DEL,                             KPAD_T3, KPAD_B2)
+COMB(combo_bsp2, KC_BSPC,                            KPAD_B3, KPAD_T2)
+COMB(combo_esc2, KC_ESC,                    KPAD_T4, KPAD_T3, KPAD_T2, KPAD_T1)
+COMB(combo_pent, KC_PENT,                   KPAD_B4, KPAD_B3, KPAD_B2, KPAD_B1)             // keypad enter
+
+COMB(combo_osf2, OSM_SFT,                                              KPAD_B1, KPAD_T1)
+COMB(combo_ogu2, OSM_GUI,                                     KPAD_B2, KPAD_T2)
+COMB(combo_oal2, OSM_ALT,                            KPAD_B3, KPAD_T3)
+COMB(combo_oct2, OSM_CTL,                   KPAD_B4, KPAD_T4)
+
+COMB(combo_sfl2, LCK_SFT,                   KPAD_B4,                   KPAD_B1, KPAD_T1)
+COMB(combo_gul2, LCK_GUI,                   KPAD_B4,          KPAD_B2, KPAD_T2)
+COMB(combo_all2, LCK_ALT,                   KPAD_B4, KPAD_B3, KPAD_T3)                       // experimental
+COMB(combo_guk2, LCK_GUI,                                     KPAD_B2, KPAD_T2, KPAD_B1)     // experimental
+COMB(combo_alk2, LCK_ALT,                            KPAD_B3, KPAD_T3,          KPAD_B1)
+COMB(combo_ctk2, LCK_CTL,                   KPAD_B4, KPAD_T4,                   KPAD_B1)
+
+COMB(combo_cap2, KC_CAPS,                   KPAD_T4, KPAD_T3, KPAD_T2, KPAD_B1)
+COMB(combo_cw2,  CW_TOGG,                   KPAD_T4, KPAD_T3,          KPAD_B1)
+COMB(combo_hnl2, LCK_HND,                   KPAD_B4, KPAD_B3, KPAD_B2, KPAD_T1)
+COMB(combo_hnd2, OSM_HND,                   KPAD_B4, KPAD_B3,          KPAD_T1)
+
+COMB(layer_fn3,  OSL(LAYER_FUNCS),          KPAD_B2, KPAD_B1, KPAD_T2, KPAD_T1)
+COMB(layer_rgb3, TG(LAYER_RGB),             KPAD_B4, KPAD_T3, KPAD_B2, KPAD_T1)              // get into RGB layer
+COMB(layer_ms3,  TG(LAYER_MOUSE),                    KPAD_B3, KPAD_T2, KPAD_B1)              // get into Mouse layer
+
+
+// Combos in function layer
+// NAME          RESULT                     TRIGGER
+COMB(combo_f12,  KC_F12,                                               KFUN_B1, KFUN_T1)
+COMB(combo_f11,  KC_F11,                                      KFUN_B2, KFUN_T2)
+COMB(combo_f10,  KC_F10,                             KFUN_B3, KFUN_T3)
+COMB(combo_f9,   KC_F9,                     KFUN_B4, KFUN_T4)
+
+COMB(combo_osf3, OSM_SFT,                                              KFUN_B1, KFUN_T1)
+COMB(combo_ogu3, OSM_GUI,                                     KFUN_B2, KFUN_T2)
+COMB(combo_oal3, OSM_ALT,                            KFUN_B3, KFUN_T3)
+COMB(combo_oct3, OSM_CTL,                   KFUN_B4, KFUN_T4)
+
+COMB(combo_sfl3, LCK_SFT,                   KFUN_B4,                   KFUN_B1, KFUN_T1)
+COMB(combo_gul3, LCK_GUI,                   KFUN_B4,          KFUN_B2, KFUN_T2)
+COMB(combo_all3, LCK_ALT,                   KFUN_B4, KFUN_B3, KFUN_T3)                       // experimental
+COMB(combo_guk3, LCK_GUI,                                     KFUN_B2, KFUN_T2, KFUN_B1)     // experimental
+COMB(combo_alk3, LCK_ALT,                            KFUN_B3, KFUN_T3,          KFUN_B1)
+COMB(combo_ctk3, LCK_CTL,                   KFUN_B4, KFUN_T4,                   KFUN_B1)
 
 
 // Combos in other layers
@@ -79,10 +157,6 @@ COMB(combo_ins,  KC_INS,                                      KNAV_T2, KNAV_T1)
 COMB(combo_mprv, KC_MPRV,                            KMDA_T3, KMDA_T2)
 COMB(combo_mnxt, KC_MNXT,                                     KMDA_T2, KMDA_T1)
 COMB(combo_mply, KC_MPLY,                            KMDA_T3, KMDA_T2, KMDA_T1)
-
-COMB(combo_f12,  KC_F12,                                               KFUN_B1, KFUN_T1)
-COMB(combo_f11,  KC_F11,                                      KFUN_B2, KFUN_T2)
-COMB(combo_f10,  KC_F10,                             KFUN_B3, KFUN_T3)
-COMB(combo_f9,   KC_F9,                     KFUN_B4, KFUN_T4)
+COMB(combo_app,  KC_APP,                                      KMDA_B2, KMDA_B1)
 
 COMB(combo_rgbt, RGB_TOG,                                              KRGB_B1, KRGB_T1)
