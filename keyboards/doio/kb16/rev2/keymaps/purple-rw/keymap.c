@@ -32,10 +32,12 @@ enum layer_names {
     _TUPLET
 };
 
-#define DIA_UP A(S(KC_UP))      // diatonically up
-#define DIA_DN A(S(KC_DOWN))    // diatonically down
-#define OCT_UP G(KC_UP)         // octave up
-#define OCT_DN G(KC_DOWN)       // octave down
+#define DIA_UP   A(S(KC_UP))        // diatonically up
+#define DIA_DN   A(S(KC_DOWN))      // diatonically down
+#define OCT_UP   G(KC_UP)           // octave up
+#define OCT_DN   G(KC_DOWN)         // octave down
+#define ZM_IN    G(KC_EQL)          // zoom in
+#define ZM_OUT   G(KC_MINUS)        // zoom out
 
 // enum layer_keycodes { };
 
@@ -95,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        │  q  │  w  │  s  │  t  │                        0.5x duration,    2x duration,    slur,  tie
        ├─────┼─────┼─────┼─────┤
        │ XXX │ dia+│semi+│ oct+│       ┌─────┐
-       ├─────┼─────┼─────┼─────┤       │     │
+       ├─────┼─────┼─────┼─────┤       │     │  
        │     │ dia-│semi-│ oct-│       └─────┘
        └─────┴─────┴─────┴─────┘
 */
@@ -113,14 +115,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        │3plet|4plet|5plet|6plet│
        ├─────┼─────┼─────┼─────┤
        │     |     |     |     │       ┌─────┐
-       ├─────┼─────┼─────┼─────┤       │     │
+       ├─────┼─────┼─────┼─────┤       │ Note│          Toggle note input
        │     │     |     │ XXX │       └─────┘
        └─────┴─────┴─────┴─────┘
 */
     [_TUPLET] = LAYOUT(
                   G(KC_2), G(KC_9), G(KC_8), G(KC_7), _______,
                   G(KC_3), G(KC_4), G(KC_5), G(KC_6), _______,
-                  _______, _______, _______, _______, _______,
+                  _______, _______, _______, _______, KC_N,
                   _______, _______, _______, _______
                 ),
 };
@@ -139,6 +141,6 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
     [_BASE]   = { ENCODER_CCW_CW(KC_LEFT, KC_RGHT), ENCODER_CCW_CW(KC_PGUP, KC_PGDN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [_CHORD]  = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
     [_LAYER3] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
-    [_TUPLET] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
+    [_TUPLET] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(ZM_OUT,  ZM_IN) },
 };
 #endif
