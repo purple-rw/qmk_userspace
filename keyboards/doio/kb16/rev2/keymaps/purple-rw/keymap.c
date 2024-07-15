@@ -32,10 +32,10 @@ enum layer_names {
     _TUPLET
 };
 
-#define DIAG_UP A(S(KC_UP))
-#define DIAG_DN A(S(KC_DOWN))
-#define OCTV_UP G(KC_UP)
-#define OCTV_DN G(KC_DOWN)
+#define DIA_UP A(S(KC_UP))      // diatonically up
+#define DIA_DN A(S(KC_DOWN))    // diatonically down
+#define OCT_UP G(KC_UP)         // octave up
+#define OCT_DN G(KC_DOWN)       // octave down
 
 // enum layer_keycodes { };
 
@@ -43,12 +43,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /*
        ┌─────┬─────┬─────┬─────┐   ┌─────┐ ┌─────┐
-       │  2  │  .  │  0  │  7  │   │Space│ │Enter│
+       │     │     │     │     │   │     │ │     │
        ├─────┼─────┼─────┼─────┤   └─────┘ └─────┘
-       │  3  │  4  │  5  │  6  │
+       │     │     │     │     │
+       ├─────┼─────┼─────┼─────┤
+       │LAYR3│     │     │     │       ┌─────┐
+       ├─────┼─────┼─────┼─────┤       │     │
+       │CHORD│     │     │2PLET│       └─────┘
+       └─────┴─────┴─────┴─────┘
+
+       ┌─────┬─────┬─────┬─────┐   ┌─────┐ ┌─────┐
+       │  2  │  .  │  0  │  7  │   │Space│ │Enter│      32nd  dotted  rest     whole
+       ├─────┼─────┼─────┼─────┤   └─────┘ └─────┘
+       │  3  │  4  │  5  │  6  │                        16th  8th     quarter  half
        ├─────┼─────┼─────┼─────┤
        │  a  │  b  │  c  │  d  │       ┌─────┐
-       ├─────┼─────┼─────┼─────┤       │ Mute│
+       ├─────┼─────┼─────┼─────┤       │Mute │
        │BkSpc│  e  │  f  │  g  │       └─────┘
        └─────┴─────┴─────┴─────┘
 
@@ -80,20 +90,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /*
        ┌─────┬─────┬─────┬─────┐   ┌─────┐ ┌─────┐
-       │  Q  │  W  │  x  │  j  │   │     │ │     │
+       │  Q  │  W  │  x  │  j  │   │     │ │     │      0.5x dur dotted,  2x dur dotted,  flip,  enharmonic
        ├─────┼─────┼─────┼─────┤   └─────┘ └─────┘
-       │  q  │  w  │  s  │  t  │
+       │  q  │  w  │  s  │  t  │                        0.5x duration,    2x duration,    slur,  tie
        ├─────┼─────┼─────┼─────┤
-       │ XXX │diag+│semi+│ oct+│       ┌─────┐
+       │ XXX │ dia+│semi+│ oct+│       ┌─────┐
        ├─────┼─────┼─────┼─────┤       │     │
-       │     │diag-│semi-│ oct-│       └─────┘
+       │     │ dia-│semi-│ oct-│       └─────┘
        └─────┴─────┴─────┴─────┘
 */
     [_LAYER3] = LAYOUT(
                   S(KC_Q), S(KC_W), KC_X,    KC_J,    _______,
                   KC_Q,    KC_W,    KC_S,    KC_T,    _______,
-                  _______, DIAG_UP, KC_UP,   OCTV_UP, _______,
-                  _______, DIAG_DN, KC_DOWN, OCTV_DN
+                  _______, DIA_UP,  KC_UP,   OCT_UP,  _______,
+                  _______, DIA_DN,  KC_DOWN, OCT_DN
                 ),
 
 /*
@@ -125,6 +135,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][2] = {
+    //            Left knob                         Right knob                        Big knob
     [_BASE]   = { ENCODER_CCW_CW(KC_LEFT, KC_RGHT), ENCODER_CCW_CW(KC_PGUP, KC_PGDN), ENCODER_CCW_CW(KC_VOLD, KC_VOLU) },
     [_CHORD]  = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
     [_LAYER3] = { ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______), ENCODER_CCW_CW(_______, _______) },
