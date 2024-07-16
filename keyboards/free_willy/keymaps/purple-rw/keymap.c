@@ -29,7 +29,7 @@
 enum free_willy_layers {
     _COLEMAK,	// Colemak-DH
     _QWERTY,    // Qwerty
-    _COLENIT,   // Colemanite
+    _COLEMNT,   // Colemanite
     _HANDSDN,   // Hands Down Neu 30
     _SEMIMAK,   // Semimak JQ
     _RAISE,     // Numbers & Symbols
@@ -45,7 +45,7 @@ enum free_willy_layers {
 enum free_willy_keycodes {
     COLEMAK = QK_USER,
     QWERTY,
-    COLENIT,
+    COLEMNT,
     HANDSDN,
     SEMIMAK,
 
@@ -56,15 +56,6 @@ enum free_willy_keycodes {
     M_SELAL,    // select all
     M_ZMIN,     // zoom in
     M_ZMOUT     // zoom out
-};
-
-/* Converting keycode to layer enum */
-const uint16_t PROGMEM keycode2layer[] = {
-    _COLEMAK,
-    _QWERTY,
-    _COLENIT,
-    _HANDSDN,
-    _SEMIMAK,
 };
 
 /* Operating system dependent shortcut keys */
@@ -79,11 +70,6 @@ const uint16_t PROGMEM osd_keys[][3] = {
     /* M_ZMIN  */   { A(KC_WH_D), G(KC_EQL),  G(A(KC_EQL))  },
     /* M_ZMOUT */   { A(KC_WH_U), G(KC_MINS), G(A(KC_MINS)) }
 };
-
-/* Try Layers */
-#define TRI_LAYER_LOWER_LAYER  _RAISE
-#define TRI_LAYER_RAISE_LAYER  _LOWER
-#define TRI_LAYER_ADJUST_LAYER _MODS
 
 /* Thumb keys */
 #define RAISE   QK_TRI_LAYER_LOWER
@@ -171,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *               | Esc  |LOWER |Shift |Space |RAISE |Enter |
  *               `-----------------------------------------'
  */
-[_COLENIT] = LAYOUT(
+[_COLEMNT] = LAYOUT(
     KC_B,    KC_L,    KC_W,    KC_M,    KC_Q,    KC_J,    KC_F,    KC_O,    KC_U,    KC_SCLN,
     KC_N,    KC_R,    KC_S,    KC_T,    KC_G,    KC_Y,    KC_H,    KC_E,    KC_I,    KC_A,
     KC_Z,    KC_X,    KC_C,    KC_D,    KC_V,    KC_K,    KC_P,    KC_SLSH, KC_DOT,  KC_COMM,
@@ -344,7 +330,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,---------------------------------------------------------------------.
  * |Brght+| Sat+ | Hue+ |RGBmod| BL+  |      |HndsDn|Semimk|      |Debug |
  * |------+------+------+------+------+------+------+------+------+------|
- * |Brght-| Sat- | Hue- | RGB  | BL-  |AGnorm|Colemk|Qwerty|Colnit|      |
+ * |Brght-| Sat- | Hue- | RGB  | BL-  |AGnorm|Colemk|Qwerty|Colmnt|      |
  * |------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |  BL  |BLbrth|AGswap|      |      |Reset |BootL |
  * `-------------+------+------+------+------+------+------+-------------'
@@ -353,7 +339,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_ADJST] = LAYOUT(
     RGB_VAI, RGB_SAI, RGB_HUI, RGB_MOD, BL_UP,   XXXXXXX, HANDSDN, SEMIMAK, XXXXXXX, DB_TOGG,
-    RGB_VAD, RGB_SAD, RGB_HUD, RGB_TOG, BL_DOWN, AG_NORM, COLEMAK, QWERTY,  COLENIT, XXXXXXX,
+    RGB_VAD, RGB_SAD, RGB_HUD, RGB_TOG, BL_DOWN, AG_NORM, COLEMAK, QWERTY,  COLEMNT, XXXXXXX,
     XXXXXXX, XXXXXXX, XXXXXXX, BL_TOGG, BL_BRTG, AG_SWAP, XXXXXXX, XXXXXXX, QK_RBT,  QK_BOOT,
                       XXXXXXX, XXXXXXX, ADJST,   ADJST,   XXXXXXX, XXXXXXX
 )
@@ -383,11 +369,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case COLEMAK:   /* fall thru */
         case QWERTY:    /* fall thru */
-        case COLENIT:   /* fall thru */
+        case COLEMNT:   /* fall thru */
         case HANDSDN:   /* fall thru */
         case SEMIMAK:
             if (record->event.pressed) {
-                uint16_t layer = keycode2layer[keycode - QK_USER];
+                uint16_t layer = keycode - COLEMAK;
                 set_single_persistent_default_layer(layer);
                 layer_move(layer);
             }
